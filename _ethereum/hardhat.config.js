@@ -2,7 +2,7 @@ require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-etherscan");
 
 const fs = require('fs')
-const privateKey = fs.readFileSync(".secret-moralis-rinkeby").toString().trim() || "01234567890123456789"
+const privateKey = fs.readFileSync(".secret-moralis-mumbai").toString().trim() || "01234567890123456789"
 
 module.exports = {
   defaultNetwork: "hardhat",
@@ -12,7 +12,8 @@ module.exports = {
     },
     mumbai: {
       //url: `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
-      url: `https://speedy-nodes-nyc.moralis.io/a3ba9d53b25d7c390de99bf8/polygon/mumbai`,
+      //url: `https://speedy-nodes-nyc.moralis.io/a3ba9d53b25d7c390de99bf8/polygon/mumbai`,
+      url: 'https://polygon-mumbai.infura.io/v3/b76ff2a1ac204e73894d24bce8eb8bbd',
       accounts: [privateKey],//[process.env.METAMASK_PRIVATEKEY]
     },
     rinkeby: {
