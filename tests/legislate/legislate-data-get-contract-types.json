@@ -1,0 +1,302 @@
+
+  {
+    "id": 5938261218295808,
+    "name": "Non-Disclosure Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/5938261218295808"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/en/articles/5963822-the-non-disclosure-agreement",
+    "about_html": "<p>A non-disclosure agreement is a contract between the discloser and recipient of confidential information lasting for a specified term. The confidential information can be technical and/or commercial in nature, and represents a benefit conferred to the receiving party.</p><p>The recipient of confidential information must protect it by not using it for unauthorised purposes and not disclosing it to third parties. If both parties are disclosing confidential information, then they are considered recipients of the other&rsquo;s information.</p>"
+  },
+  {
+    "id": 6303654856359936,
+    "name": "Employment Offer Letter",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6303654856359936"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/hc/en-gb/articles/360011024078",
+    "about_html": "<p>An employment offer letter is an offer of employment sent by a director of a company to a prospective employee, establishing the key terms of employment.</p><p>The employer indicates the company&rsquo;s responsibilities in respect of the employee&rsquo;s salary and pension scheme. The offer also indicates which, if any, of the company&rsquo;s employment benefit schemes the employee is entitled to join. Further, the employee is informed of who and where to report to, and may be invited to complete an employment contract.</p>"
+  },
+  {
+    "id": 6199562901389312,
+    "name": "Employment Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6199562901389312"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/hc/en-gb/articles/360011000758",
+    "about_html": "<p>An employment contract establishes the terms of employment between an employer company and an individual employee. It sets out the representations made by the parties, their liabilities under the contract, and the duration of the employment.</p><p>Both parties assert their entitlements both during and after the course of employment. Further, the parties undertake to comply with relevant laws and regulations, as well as company policies and procedures. Some of these obligations also survive termination of the contract.</p>"
+  },
+  {
+    "id": 6690589634461716,
+    "name": "Consultancy Services Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461716"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/en/articles/5963817-the-consultancy-agreement",
+    "about_html": "<p>A <strong>consultancy agreement</strong> is a contract between consultants (either self-employed or through an intermediary company) and their clients to provide consultancy services.</p><p>The consultant agrees to provide services with due care and to protect the client&rsquo;s confidential information. The consultant is liable for any losses incurred due to their negligence or a breach of duty, so may seek professional liability insurance. Further, the client agrees to remunerate the consultant for their services. The client also owns all copyright and intellectual property arising from the consultation.</p>"
+  },
+  {
+    "id": 6690589634461717,
+    "name": "Internship Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461717"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/hc/en-gb/articles/360010961458-The-Consultancy-Agreement",
+    "about_html": "<p>An internship agreement allows an intern to work for a Company.</p>\n<p>An intern can be a worker or a volunteer.</p>"
+  },
+  {
+    "id": 6690589634461719,
+    "name": "IP and Confidentiality Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461719"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>This IP and Confidentiality Agreement should be used with the internship offer letter agreement. It allows an intern to work at a Company whilst protecting the information and intellectual property which might be developed during the internship.</p>"
+  },
+  {
+    "id": 6690589634461710,
+    "name": "Lodger Licence Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461710"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Lodger Licence Agreement allows a Licensor to rent out a room in their Property to a Licensee.</p>\n<p>The Property should be the Licensor's main home.</p>\n<p>This Licence is an Excluded Licence under Section 3A(2) of the Protection from Eviction Act. This Licence is NOT an Assured Shorthold Tenancy (as defined in Section 19A of the Housing Act 1988) and does not create the relationship of a landlord and tenant.</p>"
+  },
+  {
+    "id": 6690589634461701,
+    "name": "Assured Shorthold Tenancy Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461701"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/en/articles/5963816-assured-shorthold-tenancy",
+    "about_html": "<p>An Assured Shorthold Tenancy Agreement is a contract between a landlord and a tenant to let an identified property for a specified term at an agreed rate. </p> <p>It is unique since the landlord can evict the tenant without a reason. However, to do this the landlord must follow a special procedure and give adequate notice. </p> <p>Both parties undertake certain duties in regard to the property, rent, deposit, and repair. The tenant is required to seek the prior written consent of the landlord for some things, and the landlord must not unreasonably withhold consent. Depending on the term of the tenancy, there are various rules about termination. </p>"
+  },
+  {
+    "id": 6690589634461706,
+    "name": "Student Tenancy Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461706"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/en/articles/5963826-the-student-tenancy-agreement",
+    "about_html": "<p><span><strong>A student tenancy</strong> is an agreement between a landlord and a Full Time Student to rent out an identified residential property for a specified term at an agreed rate. The details of the tenancy establish the duties and undertakings of both parties.</span></p><p><span>A tenant requires permission from the landlord to perform some activities and is altogether restricted from performing others. The landlord has certain entitlements in regard to the deposit and the property itself. Moreover, depending on whether or not the rent is inclusive of utilities, both the landlord and the tenant have varying liabilities. </span></p>"
+  },
+  {
+    "id": 6690589634461702,
+    "name": "Rent Increase Letter",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461702"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Section 13 Rent Increase Letter is a formal notice that informs a tenant of an incoming increase in the rent which they must pay for the remaining lease period.<p>\n<p>This notice should be used when proposing a new rent under an assured periodic tenancy (including an assured shorthold periodic tenancy) of premises situated in England</p>\n<p>A minimum period of notice must be given before the proposed new rent can take effect</p>"
+  },
+  {
+    "id": 6690589634461705,
+    "name": "Tenancy Amendment Letter",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461705"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Tenancy Amendment Letter is a letter agreement (i.e. a contract in letter form), that formally changes the terms of a tenancy agreement. It either adds, removes, or updates parts of the contract. To be effective, it must be agreed upon by both the tenant and landlord/letting agency.<p>"
+  },
+  {
+    "id": 6690589634461729,
+    "name": "Recruitment Terms of Business Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461729"
+      }
+    ],
+    "about_url": "https://help.legislate.tech/en/articles/5963824-the-recruitment-agreement",
+    "about_html": "<p>A Recruitment Standard Terms of Business Agreement allows an Agent to introduce Candidates to a Client in exchange for an Introduction Fee if they are successfully engaged by the Client.</p>"
+  },
+  {
+    "id": 6690589634461700,
+    "name": "Residential Lettings Agency Terms of Business",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461700"
+      }
+    ],
+    "about_url": "help.legislate.tech",
+    "about_html": "<p>A Residential Lettings Agency Terms of Business agreement allows the Agent to manage a tenancy on behalf of the Landlord.</p>"
+  },
+  {
+    "id": 6690589634461720,
+    "name": "GDPR Privacy Standard",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461720"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Privacy Standard is an internal document which sets out how a Company processes personal data and it must be signed by Employees and Consultants.</p>"
+  },
+  {
+    "id": 6690589634461747,
+    "name": "Deed of Guarantee",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461747"
+      }
+    ],
+    "about_url": "https://www.legislate.tech/",
+    "about_html": "<p>Deed of guarantee</p>"
+  },
+  {
+    "id": 6690589634461744,
+    "name": "Whistleblowing Policy",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461744"
+      }
+    ],
+    "about_url": "https://www.legislate.tech",
+    "about_html": "A policy suitable for a small or medium sized business which provides guidance on the procedure for reporting wrongdoing and the protection available."
+  },
+  {
+    "id": 6690589634461738,
+    "name": "Anti-corruption and Bribery Policy ",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461738"
+      }
+    ],
+    "about_url": "https://www.legislate.tech",
+    "about_html": "<p>The anti-corruption and bribery policy defines a Company's set of procedures to prevent and sanction corruption and bribery.</p>"
+  },
+  {
+    "id": 6690589634461737,
+    "name": "Anti-Slavery and Human Trafficking Policy",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461737"
+      }
+    ],
+    "about_url": "https://www.legislate.tech",
+    "about_html": "<p>Modern slavery is a crime and a violation of fundamental human rights. An Anti-Slavery and Human Trafficking Policy is often a prerequisite before being able to engage with corporate partners.</p>"
+  },
+  {
+    "id": 6690589634461733,
+    "name": "Casual Worker Agreement",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461733"
+      }
+    ],
+    "about_url": "https://www.legislate.tech",
+    "about_html": "<p>A zero hour contract has no minimum amount of contractual hours in comparison to a full-time or part-time contract, the individual will be asked to perform work when needed and will be paid based on the work is completed. </p>"
+  },
+  {
+    "id": 6690589634461715,
+    "name": "Privacy Notice",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461715"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Privacy Notice is required by the UK General Data Protection Regulation (GDPR) and provides information to people whose information (personal data) the data controller holds and uses.</p>"
+  },
+  {
+    "id": 6690589634461712,
+    "name": "Section 21 Notice",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461712"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Section 21 can be served to evict tenants from a Property after a fixed term assured shorthold tenancy ends or during a assured shorthold tenancy with no fixed end date.</p>\n<p>The government's <a href=\"https://www.gov.uk/evicting-tenants/section-21-and-section-8-notices\" target=\"_blank\">website</a> details when you cannot use a Section 21 notice in England and Wales.</p>"
+  },
+  {
+    "id": 6690589634461711,
+    "name": "Section 8 Notice",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461711"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Section 8 can be served to evict tenants from a Property if they have broken the terms of the assured shorthold tenancy.</p>\n<p>The government's <a href=\"https://www.gov.uk/evicting-tenants/section-21-and-section-8-notices\" target=\"_blank\">website</a> details when you cannot use a Section 8 notice in England and Wales.</p>\n<p>If you gave your tenant notice on or after 29 August 2020, the notice period must be at least 6 months. It can be shorter in some cases, for example if you evict them for antisocial behaviour. Find more information in the <a href=\"https://www.gov.uk/government/publications/covid-19-and-renting-guidance-for-landlords-tenants-and-local-authorities\", target=\"_blank\">Technical guidance on eviction notices</a>.\nIn Wales, if you gave notice on or after 24 July, the notice period must be at least 6 months. If you want to evict your tenants because of antisocial behaviour, the notice period is still 3 months or more.</p>"
+  },
+  {
+    "id": 6690589634461724,
+    "name": "Staff Handbook",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461724"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A staff handbook is provided to Employees upon commencemnt of Employment and governs the relationship between Employer and Employee.</p>\n<p>It provides guidance on employment related issues and key pieces of information which need to be provided to the Employee.</p>"
+  },
+  {
+    "id": 6690589634461726,
+    "name": "Tenancy Application Form",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461726"
+      }
+    ],
+    "about_url": "www.legislate.tech",
+    "about_html": "<p>A Tenancy Application Form allows a tenant to apply to rent a Property.</p>"
+  },
+  {
+    "id": 6690589634461725,
+    "name": "Holding Deposit Form",
+    "links": [
+      {
+        "rel": "self",
+        "href": "https://sandbox.legislate.tech/v1/contract-types/6690589634461725"
+      }
+    ],
+    "about_url": "https://www.legislate.tech",
+    "about_html": "<p>A holding deposit is taken from a prospective tenant to reserve a property.</p>\n<p>A holding deposit must be capped to 1 week's rent and will contribute to the deposit or rent.</p>"
+  }
+]

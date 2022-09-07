@@ -1,0 +1,43 @@
+{
+    "oauth": {
+        "provider": "facebook",
+        "scope": [
+            "email"
+        ],
+        "accessToken": "EAAIBv1jicpUBAI6DWeESDsaPvqWmNKTH70fjonryv1oHG00RtYhL9tz38rfmy4cKg9KWGJ8ZC5GL6utbTjpSURaOWp06zZBhSthViF12KCiGw2WJnF8ZCRGxRVClmIENrFLFXcM53Wi3wzdxZCgNolmiyo39VkH2ZAt6ltzVAxqNaCmChGpXJrBTYDa5Emi3SzQVlzJ2nhJ9yPHBq4Xjkbrv9GUcIYjnPOw5NangaoQZDZD",
+        "userHandle": "10159079425513099",
+        "userInfo": {
+            "sub": "10159079425513099",
+            "name": "Huey Ly",
+            "familyName": "Ly",
+            "givenName": "Huey",
+            "emailVerified": true,
+            "sources": {
+                "https://graph.facebook.com/me?fields=id,name,first_name,middle_name,last_name,email,address,link,picture": {
+                    "id": "10159079425513099",
+                    "name": "Huey Ly",
+                    "first_name": "Huey",
+                    "last_name": "Ly",
+                    "picture": {
+                        "data": {
+                            "height": 50,
+                            "is_silhouette": false,
+                            "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10159079425513099&height=50&width=50&ext=1659079925&hash=AeQEmUZ-dDq1U-3Qvb0",
+                            "width": 50
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "magic": {
+        "idToken": "WyIweGQxYTIzZGVkZjZkMTI5ZGMyZTRkZjllZDM0MzYxYWFhMjhlODQxOTUwZGVlNzZiNmJiYmEwYmQyNzU2NDM0ODA3NjkxZWYxNzlkZmMzYTVjNGI2OGEzMTJlMGZjMzcyMjhmMGViYjM5NzFmMzcyZTdjN2NiNDQxNmZhYWVkNGVhMWIiLCJ7XCJpYXRcIjoxNjU2NDg3OTIzLFwiZXh0XCI6MTY1NjQ4ODgyMyxcImlzc1wiOlwiZGlkOmV0aHI6MHhEOWM1NkQ2Njk3OGM1OWFGNDYwOWVkRjE2NzYxNkM4QjgwQ2M4ZjJlXCIsXCJzdWJcIjpcIlplZGQ1U1B6VjBGdzQ4cHBkVVBrUUNhR3NodENMdVJIOU1pa1FaRzZwbVE9XCIsXCJhdWRcIjpcIk4zSndOMEpoLWFDbUV5YTFDNGtzZHNUeW5qZzVkM0dDT1BXS09QVmhtT009XCIsXCJuYmZcIjoxNjU2NDg3OTIzLFwidGlkXCI6XCIwNTdhZjAyOC1kMGNhLTQzOTEtOWFhNi1jODMxMTNiYWVlZDVcIixcImFkZFwiOlwiMHhjMDI5ODIxYzFlMzViOTQ3ZDRhYjM5NGZiNmViMWQ3ZDhhOWRjMjFkMWMyMTRkNmI3YWRjMTlhYWFhNDAwMGFjNDI0M2ZhNzZiODk4NWZlOGUwYjM5ZGYzN2IwMmU0YTUyYjY1MTdmNmNhOTA3MDNlMTg5OGMxOGM2ZTY3MDJjOTFjXCJ9Il0=",
+        "userMetadata": {
+            "issuer": "did:ethr:0xD9c56D66978c59aF4609edF167616C8B80Cc8f2e",
+            "publicAddress": "0xd9c56d66978c59af4609edf167616c8b80cc8f2e",
+            "email": null,
+            "isMfaEnabled": false,
+            "phoneNumber": null
+        }
+    }
+}

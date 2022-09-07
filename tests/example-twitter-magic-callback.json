@@ -1,0 +1,164 @@
+{
+    "oauth": {
+        "provider": "twitter",
+        "scope": [
+            "r_emailaddress",
+            "r_liteprofile"
+        ],
+        "accessToken": "29390149-z6im04a9PC135IAG2L1eDg3ihR5zir9bZXobtbSvf+IKXsT6rqfmfTXuDtAM4VAAM1fbeiRDIzc0bHQWa2WpEm7",
+        "userHandle": "29390149",
+        "userInfo": {
+            "sub": "29390149",
+            "name": "Huey Ly",
+            "preferredUsername": "hueyly",
+            "profile": "https://pbs.twimg.com/profile_images/1518354468/profile_pic3_normal.jpg",
+            "locale": "",
+            "emailVerified": true,
+            "sources": {
+                "https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true": {
+                    "id": 29390149,
+                    "id_str": "29390149",
+                    "name": "Huey Ly",
+                    "screen_name": "hueyly",
+                    "location": "",
+                    "description": "",
+                    "url": "http://t.co/HVOBAECM4b",
+                    "entities": {
+                        "url": {
+                            "urls": [
+                                {
+                                    "url": "http://t.co/HVOBAECM4b",
+                                    "expanded_url": "http://hueyly.com",
+                                    "display_url": "hueyly.com",
+                                    "indices": [
+                                        0,
+                                        22
+                                    ]
+                                }
+                            ]
+                        },
+                        "description": {
+                            "urls": []
+                        }
+                    },
+                    "protected": false,
+                    "followers_count": 188,
+                    "friends_count": 421,
+                    "listed_count": 6,
+                    "created_at": "Tue Apr 07 05:14:17 +0000 2009",
+                    "favourites_count": 32,
+                    "utc_offset": null,
+                    "time_zone": null,
+                    "geo_enabled": true,
+                    "verified": false,
+                    "statuses_count": 306,
+                    "lang": null,
+                    "status": {
+                        "created_at": "Wed Jun 15 07:28:36 +0000 2022",
+                        "id": 1536973935744811000,
+                        "id_str": "1536973935744811008",
+                        "text": "@petersagal @adamfelber @waitwait I’ve listened to Peter’s book on running on Audible twice.  Love the humor and th… https://t.co/1w9AdJW3tk",
+                        "truncated": true,
+                        "entities": {
+                            "hashtags": [],
+                            "symbols": [],
+                            "user_mentions": [
+                                {
+                                    "screen_name": "petersagal",
+                                    "name": "Peter Sagal",
+                                    "id": 14985228,
+                                    "id_str": "14985228",
+                                    "indices": [
+                                        0,
+                                        11
+                                    ]
+                                },
+                                {
+                                    "screen_name": "adamfelber",
+                                    "name": "Adam Felber",
+                                    "id": 21910114,
+                                    "id_str": "21910114",
+                                    "indices": [
+                                        12,
+                                        23
+                                    ]
+                                },
+                                {
+                                    "screen_name": "waitwait",
+                                    "name": "waitwait",
+                                    "id": 13784322,
+                                    "id_str": "13784322",
+                                    "indices": [
+                                        24,
+                                        33
+                                    ]
+                                }
+                            ],
+                            "urls": [
+                                {
+                                    "url": "https://t.co/1w9AdJW3tk",
+                                    "expanded_url": "https://twitter.com/i/web/status/1536973935744811008",
+                                    "display_url": "twitter.com/i/web/status/1…",
+                                    "indices": [
+                                        117,
+                                        140
+                                    ]
+                                }
+                            ]
+                        },
+                        "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+                        "in_reply_to_status_id": 1536787029870116900,
+                        "in_reply_to_status_id_str": "1536787029870116865",
+                        "in_reply_to_user_id": 14985228,
+                        "in_reply_to_user_id_str": "14985228",
+                        "in_reply_to_screen_name": "petersagal",
+                        "geo": null,
+                        "coordinates": null,
+                        "place": null,
+                        "contributors": null,
+                        "is_quote_status": false,
+                        "retweet_count": 0,
+                        "favorite_count": 1,
+                        "favorited": false,
+                        "retweeted": false,
+                        "lang": "en"
+                    },
+                    "contributors_enabled": false,
+                    "is_translator": false,
+                    "is_translation_enabled": false,
+                    "profile_background_color": "C0DEED",
+                    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+                    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+                    "profile_background_tile": false,
+                    "profile_image_url": "http://pbs.twimg.com/profile_images/1518354468/profile_pic3_normal.jpg",
+                    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1518354468/profile_pic3_normal.jpg",
+                    "profile_link_color": "1DA1F2",
+                    "profile_sidebar_border_color": "C0DEED",
+                    "profile_sidebar_fill_color": "DDEEF6",
+                    "profile_text_color": "333333",
+                    "profile_use_background_image": true,
+                    "has_extended_profile": false,
+                    "default_profile": true,
+                    "default_profile_image": false,
+                    "following": false,
+                    "follow_request_sent": false,
+                    "notifications": false,
+                    "translator_type": "none",
+                    "withheld_in_countries": [],
+                    "suspended": false,
+                    "needs_phone_verification": false
+                }
+            }
+        }
+    },
+    "magic": {
+        "idToken": "WyIweDU0YjU1ZDE4OWY4YjNlNDNlMGIxMTg2ZmE5OGQ3OTMzYWUyNWI4NGFkMTRlNTViY2I4Mzk4MWNiNmQ0NTQ4Y2MyOWQwMGQ0MmE0ODFlZTQ5MzdkZGVhZTNjNjYwYmFhZmU0YWJjMDhiNDQ0MTMxNDQ2OGQ0N2MzMjZiMjM4YTZjMWMiLCJ7XCJpYXRcIjoxNjU1NjUzMDE5LFwiZXh0XCI6MTY1NTY1MzkxOSxcImlzc1wiOlwiZGlkOmV0aHI6MHg5N2NhQzQyZTU3ZTgzNEQ4YzM0N0FFNzE0NjQyQUQ2MDkxRGNGNjA2XCIsXCJzdWJcIjpcImFFcFJ3LXZwNThuWHBUSVpaMnAwYk43bTJHc1JhdVAwVm1xVnlCbEtSM3M9XCIsXCJhdWRcIjpcIk4zSndOMEpoLWFDbUV5YTFDNGtzZHNUeW5qZzVkM0dDT1BXS09QVmhtT009XCIsXCJuYmZcIjoxNjU1NjUzMDE5LFwidGlkXCI6XCJjOTAxNWIzMC04ODdkLTQ5NjMtYjU4Mi1kZTFmOTU5MjRmMzdcIixcImFkZFwiOlwiMHgwZTA0NDJmNjM2NzY0ZmFkYjVkMGFhZDcxZWE4ZTI4YjIwNzIyM2QzNGJhNDEwODFkOTJjYjA2NzU2ZDkwNmYzNGQwMDJlOTA1MjZkMzM5MjM5YTg1ZTk3NjVjODNjNzA1MjcyZGY0ZTc0MmJiYzRmZGY4YjM3MWUzMzg0YTQ0YzFiXCJ9Il0=",
+        "userMetadata": {
+            "issuer": "did:ethr:0x97caC42e57e834D8c347AE714642AD6091DcF606",
+            "publicAddress": "0x97cac42e57e834d8c347ae714642ad6091dcf606",
+            "email": null,
+            "isMfaEnabled": false,
+            "phoneNumber": null
+        }
+    }
+}
