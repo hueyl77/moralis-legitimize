@@ -3,13 +3,10 @@ import { pinBase64ToIPFS, pinJSON } from "./lib/pinata-utils.js";
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '1024mb'
+            sizeLimit: '1024mb' // limit to 1GB
         }
     }
 }
-
-const fs = require("fs");
-const path = require("path");
 
 const Endpoint = async (req, res) => {
 

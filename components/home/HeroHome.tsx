@@ -21,7 +21,7 @@ const HeroHome: React.FC = ({ children }) => {
               {/* CTA form */}
               <form className="mt-8">
                 <div className="flex flex-col sm:flex-row justify-center max-w-sm mx-auto sm:max-w-md md:mx-0">
-                  <Link className="btn text-white bg-teal-500 hover:bg-teal-400 shrink-0" href="/sign-nft">Get Started</Link>
+                  <Link className="btn text-white bg-teal-500 hover:bg-teal-400 shrink-0" href="/create-signature">Get Started</Link>
                 </div>
                 {/* Success message */}
                 {/* <p className="text-center md:text-left mt-2 opacity-75 text-sm">Thanks for subscribing!</p> */}

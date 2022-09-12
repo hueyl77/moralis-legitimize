@@ -20,7 +20,7 @@ export default NextAuth({
             },
               async authorize(credentials) {
                 try {
-                  // "message" and "signature" are needed for authorisation
+                  // "message" and "signature" are needed for authorization
                   // we described them in "credentials" above
                   const { message, signature } = credentials;
 

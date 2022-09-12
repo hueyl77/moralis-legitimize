@@ -11,72 +11,100 @@ import "hardhat/console.sol";
 
 contract LegitSignature is ERC721URIStorage {
     using Counters for Counters.Counter;
-    using Strings for uint256;
+    using Strings for uint;
 
     Counters.Counter private _tokenIds;
 
-    uint256 listingPrice = 0.001 ether;
+    uint listingPrice = 0.001 ether;
+    uint MAX_SIG_PER_NFT = 10;
+
     address payable contractOwner;
     address legitNFTAddress;
 
     // mapping of tokenIds to Signature NFTs
-    mapping(uint256 => SignatureItem) private idToSignatureItem;
+    mapping(uint => SignatureItem) private idToSignatureItem;
 
-    // mapping of NFT addresses + tokenId to Signature tokenId
-    mapping(string => uint256) private nftAddrCIDToTokenId;
+    // mapping of NFT addresses + CID to Signature tokenId
+    mapping(string => uint[]) private nftAddrCIDToTokenId;
     mapping(string => string) private nftPreviewImageUrls;
 
     struct SignatureItem {
-      uint256 tokenId;
+      uint tokenId;
       address creator;
       string creatorName;
       address payable owner;
       string socialAuthJson;
     }
 
+    /* events */
     event SignatureCreated (
-      uint256 indexed tokenId,
+      uint indexed tokenId,
       address creator,
       string creatorName,
       address owner,
       string socialAuthJson
     );
 
+    event SigLinkedtoNFT(
+      address signer,
+      string nftAddrAndCID,
+      uint sigTokenId,
+      uint totalSigs
+    );
+
     constructor() ERC721("Legit Signature", "LSIG") {
       contractOwner = payable(msg.sender);
     }
 
+    modifier LimitMaxSigs(string memory nftAddrAndCID) {
+      // limit number of signatures per NFT
+      uint[] memory tokenIds = nftAddrCIDToTokenId[nftAddrAndCID];
+      uint numSigs = tokenIds.length;
+
+      string memory maxSigsStr = Strings.toString(MAX_SIG_PER_NFT);
+
+      require (numSigs <= MAX_SIG_PER_NFT, concat("Max number of signatures reached: ", maxSigsStr));
+
+      _;
+   }
+
     /* Updates the listing price of the contract */
-    function updateListingPrice(uint _listingPrice) public payable {
+    function updateListingPrice(uint _listingPrice) public payable
+    {
       require(contractOwner == msg.sender, "Only the contract owner (Legitimize) can call this function.");
       listingPrice = _listingPrice;
     }
 
     /* Updates the address of the LegitNFT contract */
-    function setLegitNFTAddr(address _legitNFTAddr) public payable {
+    function setLegitNFTAddr(address _legitNFTAddr) public payable
+    {
       require(contractOwner == msg.sender, "Only the contract owner (Legitimize) can call this function.");
       legitNFTAddress = _legitNFTAddr;
     }
 
     /* Returns the listing price of the contract */
-    function getListingPrice() public view returns (uint256) {
+    function getListingPrice() public view returns (uint)
+    {
       return listingPrice;
     }
 
-    function getTokenCreator(uint256 tokenId) public view returns (address) {
+    function getTokenCreator(uint tokenId) public view returns (address)
+    {
       return idToSignatureItem[tokenId].creator;
     }
 
-    function getSigOwner(uint256 tokenId) public view returns (address) {
+    function getSigOwner(uint tokenId) public view returns (address)
+    {
       return idToSignatureItem[tokenId].owner;
     }
 
     /* Mints a token and lists it in the Signatureplace */
-    function createToken(string memory tokenURI, string memory creatorName, string memory socialAuthJson) public payable returns (uint) {
+    function createToken(string memory tokenURI, string memory creatorName, string memory socialAuthJson) public payable returns (uint)
+    {
 
       _tokenIds.increment();
 
-      uint256 newTokenId = _tokenIds.current();
+      uint newTokenId = _tokenIds.current();
 
       _mint(msg.sender, newTokenId);
       _setTokenURI(newTokenId, tokenURI);
@@ -106,35 +134,70 @@ contract LegitSignature is ERC721URIStorage {
 
 
     /* Link an NFT's address and ipfs CID to a signature token via the signature's token id */
-    function linkNFT(string memory nftAddrAndCID, uint256 tokenId) public returns (uint) {
-      require(idToSignatureItem[tokenId].owner == msg.sender, "Only signature owner can perform this operation");
+    function linkNFT(string memory nftAddrAndCID, uint sigTokenId) public
+      LimitMaxSigs(nftAddrAndCID) returns (uint)
+    {
 
-      nftAddrCIDToTokenId[nftAddrAndCID] = tokenId;
+      require(idToSignatureItem[sigTokenId].owner == msg.sender, "Only signature owner can perform this operation");
 
-      return tokenId;
+      nftAddrCIDToTokenId[nftAddrAndCID].push(sigTokenId);
+      uint numSigs = nftAddrCIDToTokenId[nftAddrAndCID].length;
+
+      emit SigLinkedtoNFT(
+        msg.sender,
+        nftAddrAndCID,
+        sigTokenId,
+        numSigs
+      );
+
+      return sigTokenId;
     }
 
     /* Legitimize Contract call to Link an NFT's address and tokenId to a signature token via the signature's token id */
-    function contractLinkNFT(string memory nftAddrAndCID, uint256 tokenId, string memory signedPreviewImageUrl) public returns (uint) {
+    function contractLinkNFT(string memory nftAddrAndCID, uint sigTokenId, string memory signedPreviewImageUrl) public
+      LimitMaxSigs(nftAddrAndCID) returns (uint)
+    {
       require(legitNFTAddress == msg.sender, "Only Legitimize can perform this operation");
 
-      nftAddrCIDToTokenId[nftAddrAndCID] = tokenId;
+      nftAddrCIDToTokenId[nftAddrAndCID].push(sigTokenId);
       nftPreviewImageUrls[nftAddrAndCID] = signedPreviewImageUrl;
 
-      return tokenId;
+      uint numSigs = nftAddrCIDToTokenId[nftAddrAndCID].length;
+
+      emit SigLinkedtoNFT(
+        msg.sender,
+        nftAddrAndCID,
+        sigTokenId,
+        numSigs
+      );
+
+      return sigTokenId;
     }
 
     /* Returns the Signature linked to an NFT */
-    function getNFTSignature(string memory nftAddrAndCID) public view returns (SignatureItem memory) {
-      uint tokenId = nftAddrCIDToTokenId[nftAddrAndCID];
+    function getNFTSignatures(string memory nftAddrAndCID) public view returns (SignatureItem[] memory)
+    {
+      uint[] memory tokenIds = nftAddrCIDToTokenId[nftAddrAndCID];
 
-      SignatureItem storage sigItem = idToSignatureItem[tokenId];
+      uint numSigs = tokenIds.length;
+      if (numSigs > MAX_SIG_PER_NFT) {
+        numSigs = MAX_SIG_PER_NFT;
+      }
 
-      return sigItem;
+      SignatureItem[] memory sigItems = new SignatureItem[](numSigs);
+
+      for(uint i = 0; i<numSigs; i++) {
+        uint tokenId = tokenIds[i];
+        SignatureItem memory sig = idToSignatureItem[tokenId];
+        sigItems[i] = sig;
+      }
+
+      return sigItems;
     }
 
     /* Returns all Signature items */
-    function fetchSignatureItems() public view returns (SignatureItem[] memory) {
+    function fetchSignatureItems() public view returns (SignatureItem[] memory)
+    {
       require(contractOwner == msg.sender, "Only the contract owner (Legitimize) can call this function.");
 
       uint itemCount = _tokenIds.current();
@@ -153,7 +216,8 @@ contract LegitSignature is ERC721URIStorage {
     }
 
     /* Returns LegitSignatures in an account */
-    function fetchMySignatures() public view returns (SignatureItem[] memory) {
+    function fetchMySignatures() public view returns (SignatureItem[] memory)
+    {
       uint totalItemCount = _tokenIds.current();
 
       uint itemCount = 0;
@@ -178,7 +242,8 @@ contract LegitSignature is ERC721URIStorage {
       return items;
     }
 
-    function addressToAsciiString(address x) internal pure returns (string memory) {
+    function addressToAsciiString(address x) internal pure returns (string memory)
+    {
         bytes memory s = new bytes(40);
         for (uint i = 0; i < 20; i++) {
             bytes1 b = bytes1(uint8(uint(uint160(x)) / (2**(8*(19 - i)))));
@@ -190,12 +255,14 @@ contract LegitSignature is ERC721URIStorage {
         return string(s);
     }
 
-    function char(bytes1 b) internal pure returns (bytes1 c) {
+    function char(bytes1 b) internal pure returns (bytes1 c)
+    {
         if (uint8(b) < 10) return bytes1(uint8(b) + 0x30);
         else return bytes1(uint8(b) + 0x57);
     }
 
-    function concat(string memory a, string memory b) internal pure returns (string memory) {
+    function concat(string memory a, string memory b) internal pure returns (string memory)
+    {
 
       return string(abi.encodePacked(a, b));
 

@@ -9,11 +9,12 @@ const config = {
 
 export default async function handler(req, res) {
     const { address, chain, network } = req.body;
+console.log("MORALIS_API_KEY: ", process.env.MORALIS_API_KEY);
 
     await Moralis.start({ apiKey: process.env.MORALIS_API_KEY });
+console.log("HERE 2");
 
-    try {
-        const message = await Moralis.Auth.requestMessage({
+const message = await Moralis.Auth.requestMessage({
             address,
             chain,
             network,
@@ -21,8 +22,6 @@ export default async function handler(req, res) {
         });
 
         res.status(200).json(message);
-    } catch (error) {
-        res.status(400).json({ error });
-        console.error(error);
-    }
+
+
 }

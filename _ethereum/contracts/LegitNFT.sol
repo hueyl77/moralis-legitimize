@@ -11,49 +11,49 @@ import "hardhat/console.sol";
 
 interface ILegitSigContract {
 
-  function contractLinkNFT(string memory nftAddrAndCID, uint256 tokenId,
+  function contractLinkNFT(string memory nftAddrAndCID, uint tokenId,
     string memory signedPreviewImageUrl) external;
 
-  function getSigOwner(uint256 tokenId) external returns(address);
+  function getSigOwner(uint tokenId) external returns(address);
 }
 
 contract LegitNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
-    using Strings for uint256;
+    using Strings for uint;
 
     Counters.Counter private _tokenIds;
 
-    uint256 listingPrice = 0.001 ether;
+    uint listingPrice = 0.001 ether;
 
     address proxyContractAddr = 0xff7Ca10aF37178BdD056628eF42fD7F799fAc77c; // Mumbai opensea proxy
     address payable contractOwner;
 
     struct LegitItem {
       address payable owner;
-      uint256 tokenId;
+      uint tokenId;
       address legitSigAddress;
-      uint256 legitSigTokenId;
+      uint legitSigTokenId;
       string signedPreviewImageUrl;
       string originalFileUrl;
     }
 
     event LegitNFTCreated (
       address owner,
-      uint256 indexed tokenId,
+      uint indexed tokenId,
       address legitSigAddress,
-      uint256 legitSigTokenId,
+      uint legitSigTokenId,
       string signedPreviewImageUrl,
       string originalFileUrl,
       string nftAddrAndCID
     );
 
     // mapping of ipfs CIDs to tokenIds
-    mapping(string => uint256) private cidToTokenIds;
+    mapping(string => uint) private cidToTokenIds;
 
     // mapping of tokenIds to Legit  NFTs
-    mapping(uint256 => LegitItem) private idToLegitItem;
+    mapping(uint => LegitItem) private idToLegitItem;
 
-    mapping(string => uint256) private origFileCidToTokenIds;
+    mapping(string => uint) private origFileCidToTokenIds;
 
     ILegitSigContract internal legitSigContract;
 
@@ -68,7 +68,7 @@ contract LegitNFT is ERC721URIStorage {
     }
 
     /* Returns the listing price of the contract */
-    function getListingPrice() public view returns (uint256) {
+    function getListingPrice() public view returns (uint) {
       return listingPrice;
     }
 
@@ -76,7 +76,7 @@ contract LegitNFT is ERC721URIStorage {
         string memory tokenURI,
         string memory cid,
         address legitSigAddress,
-        uint256 legitSigTokenId,
+        uint legitSigTokenId,
         string memory signedPreviewImageUrl,
         string memory origFileCid,
         string memory originalFileUrl)
@@ -90,7 +90,7 @@ contract LegitNFT is ERC721URIStorage {
         require(sigOwner == msg.sender, "Owner of LegitSignature does not match the tokenId.");
 
         _tokenIds.increment();
-        uint256 newTokenId = _tokenIds.current();
+        uint newTokenId = _tokenIds.current();
 
         // link minted token ID to preview image CID
         cidToTokenIds[cid] = newTokenId;
@@ -173,7 +173,7 @@ contract LegitNFT is ERC721URIStorage {
       return items;
     }
 
-    function fetchLegitItem(uint256 tokenId) public view returns (LegitItem memory) {
+    function fetchLegitItem(uint tokenId) public view returns (LegitItem memory) {
 
       LegitItem storage currentItem = idToLegitItem[tokenId];
 

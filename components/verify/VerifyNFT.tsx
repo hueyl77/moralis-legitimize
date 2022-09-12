@@ -39,24 +39,18 @@ const VerifyNFT: React.FC = ({ children }) => {
   const [verifyClicked, setVerifyClicked] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [legalTerms, setLegalTerms] = useState("");
-  const [loadedSig, setLoadedSig] = useState<SignatureItem>();
+  const [loadedSigs, setLoadedSigs] = useState<SignatureItem[]>([]);
 
   const [errorMsg, setErrorMsg] = useState("");
 
+  /*
+   * Call smart contract getNFTSignatures to verify an NFT
+   */
   const verifyByCid = async (toVerifyAddr: string, toVerifyCid: string) => {
     setErrorMsg("");
     setPreviewImage("");
     setLegalTerms("");
     setVerifyClicked(true);
-
-    let sigItem: SignatureItem = {
-        creator: "",
-        creatorName: "",
-        owner: "",
-        socialAuthJson: "{}"
-      };
-
-    setLoadedSig(sigItem);
 
     try {
 
@@ -73,16 +67,24 @@ const VerifyNFT: React.FC = ({ children }) => {
       const tokenUri = await legitContract.tokenURI(nftTokenId);
 
       const nftAddrAndCID = `${toVerifyAddr.toLowerCase()}.${toVerifyCid}`;
-      const sigItemRes = await sigContract.getNFTSignature(nftAddrAndCID);
+      const sigItems = await sigContract.getNFTSignatures(nftAddrAndCID);
 
+console.log("sigItems: ", sigItems);
+      let newLoadedSigs = [];
 
-      if (sigItemRes) {
-        sigItem.creator = sigItemRes.creator;
-        sigItem.creatorName = sigItemRes.creatorName;
-        sigItem.owner = sigItemRes.owner;
-        sigItem.socialAuthJson = sigItemRes.socialAuthJson;
+      if (sigItems.length > 0) {
+        for (let i=0; i<sigItems.length; i++) {
+          let sig = sigItems[i];
 
-        setLoadedSig(sigItem);
+          newLoadedSigs.push({
+            creator: sig.creator,
+            creatorName: sig.creatorName,
+            owner: sig.owner,
+            socialAuthJson: sig.socialAuthJson
+          });
+        }
+
+        setLoadedSigs(newLoadedSigs);
       }
 
       const metaData = await axios.get(tokenUri);
@@ -102,10 +104,16 @@ const VerifyNFT: React.FC = ({ children }) => {
     }
   }
 
+  /*
+   * Event handler for verify button clicked
+   */
   const handleVerifyClicked = (e) => {
     verifyByCid(nftAddress, nftCid);
   };
 
+  /*
+   * User selected file event handler
+   */
   const handleFileSelect = (event) => {
     var reader = new FileReader();
     var file = event.target.files[0];
@@ -136,19 +144,18 @@ const VerifyNFT: React.FC = ({ children }) => {
         }
     };
     reader.readAsDataURL(file);
-  }
+  };
 
-  const getSocialAuthInfo = (authJson: string) => {
-
-    if (!authJson) {
-      return (<></>);
-    }
+  /*
+   * Get render components for one signature
+   */
+  const getSigInfoRender = (sig:SignatureItem) => {
 
     let socialInfo = {} as SocialAuth;
     let socialLink = "/verify";
 
     try {
-      socialInfo = JSON.parse(authJson);
+      socialInfo = JSON.parse(sig.socialAuthJson);
 
       if (socialInfo.authType == "twitter") {
         socialLink = `https://twitter.com/${socialInfo.socialHandle}`;
@@ -162,16 +169,31 @@ const VerifyNFT: React.FC = ({ children }) => {
     }
     catch (err) {
       console.log("Error parsing socialAuth JSON in getSocialAuthInfo: ", err);
-      return (<></>);
     }
 
     return (
-      <>
+      <div className="row-auto">
+        <div className="mt-2 row-auto">
+          Signature
+        </div>
+
+        <div className="mt-2 row-auto">
+          Creator Name: {sig.creatorName}
+        </div>
+
+        <div className="mt-2 row-auto">
+          Creator Addr: {sig.creator}
+        </div>
+
+        <div className="mt-2 row-auto">
+          Owner Addr: {sig.owner}
+        </div>
+
         <div className="flex flex-col mt-4 relative">
           <div>Social Auth:</div>
           <div className="flex items-center">
             <Link className="relative h-12 w-12 mx-1" href={socialLink} target="_blank">
-              <Image src={`/images/social/${socialInfo?.authType}.svg`} layout="fill" alt='Social Icon' />
+              <Image src={socialInfo?.authType ? `/images/social/${socialInfo?.authType}.svg` : ``} layout="fill" alt='Social Icon' />
             </Link>
 
             <Link className="mx-2" href={socialLink} target="_blank">
@@ -179,10 +201,35 @@ const VerifyNFT: React.FC = ({ children }) => {
             </Link>
           </div>
         </div>
+      </div>
+    )
+  }
+
+  /*
+   * Return render for loaded signatures
+   */
+  const renderLoadedSigs = () => {
+
+    if (loadedSigs.length == 0) {
+      return (
+        <div className="mt-2">
+          No Signatures found.
+        </div>
+      );
+    }
+
+    return (
+      <>
+        {
+          loadedSigs.map( sig => ( getSigInfoRender(sig) ))
+        }
       </>
     );
   };
 
+  /*
+   * Main Render
+   */
   return (
     <div className="max-w-4xl mx-auto">
 
@@ -244,35 +291,14 @@ const VerifyNFT: React.FC = ({ children }) => {
 
             <div className="p-4">
 
-              {verifyClicked && !loadedSig?.creator && (
+              {verifyClicked && loadedSigs.length == 0 && (
                   <div className="mt-2">
-                    No Signature found.
+                    No Signatures found.
                   </div>
                 )
               }
 
-              {loadedSig?.creator && (
-                <div className="row-auto">
-                  <div className="mt-2 row-auto">
-                    Signature
-                  </div>
-
-                  <div className="mt-2 row-auto">
-                    Creator Name: {loadedSig.creatorName}
-                  </div>
-
-                  <div className="mt-2 row-auto">
-                    Creator Addr: {loadedSig.creator}
-                  </div>
-
-                  <div className="mt-2 row-auto">
-                    Owner Addr: {loadedSig.owner}
-                  </div>
-                </div>)
-              }
-
-              {verifyClicked && loadedSig?.creator && loadedSig?.socialAuthJson
-                && getSocialAuthInfo(loadedSig?.socialAuthJson || "")}
+              {loadedSigs.length > 0 && renderLoadedSigs()}
 
               {legalTerms && (
                 <div className="mt-4 row-auto">

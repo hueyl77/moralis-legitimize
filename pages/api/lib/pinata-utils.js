@@ -5,6 +5,9 @@ const AWS = require('aws-sdk');
 
 const pinata = pinataSDK(process.env.PINATA_APIKEY, process.env.PINATA_SECRET_KEY);
 
+/**
+ * Pin a file to IPFS via Pinata
+ */
 export const pinFromFS = async (sourcePath, options) => {
 
   try {
@@ -18,6 +21,9 @@ export const pinFromFS = async (sourcePath, options) => {
   return null;
 }
 
+/**
+ * Pin base64 content to IPFS via Pinata
+ */
 export const pinBase64ToIPFS = async (filename, base64DataStr, options) => {
 
   const buff = Buffer.from(base64DataStr,'base64');
@@ -38,6 +44,9 @@ export const pinBase64ToIPFS = async (filename, base64DataStr, options) => {
   return null;
 }
 
+/**
+ * Pin binary data to IPFS via Pinata
+ */
 export const pinDataToIPFS = async (filename, data, options) => {
 
   const stream = Readable.from(data);
@@ -56,6 +65,9 @@ export const pinDataToIPFS = async (filename, data, options) => {
   return null;
 }
 
+/**
+ * Pin a file in AWS S3 to IPFS via Pinata
+ */
 export const awsPinBase64ToIPFS = async (filename, base64DataStr, contentType, options) => {
 
   const s3 = new AWS.S3({
@@ -83,6 +95,7 @@ export const awsPinBase64ToIPFS = async (filename, base64DataStr, contentType, o
       }
 
       const dataStream = await s3.getObject(getObjParams).createReadStream();
+      dataStream.path = filename;
 
       const result = await pinata.pinFileToIPFS(dataStream, options);
       return result;
@@ -95,6 +108,9 @@ export const awsPinBase64ToIPFS = async (filename, base64DataStr, contentType, o
   return null;
 }
 
+/**
+ * Pin JSON data to IPFS via Pinata
+ */
 export const pinJSON = async (jsonObj, options) => {
   try {
     const result = await pinata.pinJSONToIPFS(jsonObj, options);
@@ -106,32 +122,3 @@ export const pinJSON = async (jsonObj, options) => {
 
   return null;
 }
-
-export const uploadAsset = async (imgData) => {
-  const dataStream = base64ToStream(imgData);
-  const options = {
-    pinataMetadata: {
-        name: "Testing Pinata Uplaod"
-    }
-  };
-
-  try {
-    const result = await pinata.pinFileToIPFS(dataStream, options);
-    return result;
-  }
-  catch(err) {
-    console.log("errored calling pinata.pinFiletoIPFS: ", err);
-    throw err;
-  }
-
-  return null;
-}
-
-export const base64ToStream = (base64Str) => {
-
-  var dataBuffer = new Buffer(base64Str, 'base64');
-
-  const stream = Readable.from(dataBuffer.toString());
-  return stream;
-}
-

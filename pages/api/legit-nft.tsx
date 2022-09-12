@@ -1,3 +1,5 @@
+const piexif = require("piexifjs");
+
 import { pinBase64ToIPFS, pinDataToIPFS, pinJSON } from "./lib/pinata-utils.js";
 import { license1 } from "../../lib/licenses.js";
 
@@ -8,10 +10,6 @@ export const config = {
         }
     }
 }
-
-const fs = require("fs");
-const path = require("path");
-var piexif = require("piexifjs");
 
 const Endpoint = async (req, res) => {
 
@@ -34,7 +32,6 @@ const Endpoint = async (req, res) => {
     };
 
     const pinOrigResult = await pinBase64ToIPFS(tempOrigFileName, origFile, origFilePinOptions);
-console.log("Pinn Original result: ", pinOrigResult);
 
     const origFileUrl = `https://${process.env.NEXT_PUBLIC_PINATA_GATEWAY}/ipfs/${pinOrigResult.IpfsHash}`;
 

@@ -88,15 +88,15 @@ describe("LegitSignature", function() {
 
     await legitSignature.connect(addr2).linkNFT(nftAddrAndCID, tokenId);
 
-    let signatureResult = await legitSignature.connect(addr2).getNFTSignature(nftAddrAndCID);
-    // console.log("signatureResult: ", signatureResult);
-    expect(signatureResult.tokenId).to.equal(tokenId);
-    expect(signatureResult.creator).to.equal(addr2.address);
-    expect(signatureResult.owner).to.equal(addr2.address);
+    let result = await legitSignature.connect(addr2).getNFTSignatures(nftAddrAndCID);
+    // console.log("result: ", result);
+    expect(result[0].tokenId).to.equal(tokenId);
+    expect(result[0].creator).to.equal(addr2.address);
+    expect(result[0].owner).to.equal(addr2.address);
 
     // should let non-owner get signature
-    let signatureResult2 = await legitSignature.connect(addr3).getNFTSignature(nftAddrAndCID);
-    expect(signatureResult2.creator).to.equal(addr2.address);
+    let result2 = await legitSignature.connect(addr3).getNFTSignatures(nftAddrAndCID);
+    expect(result2[0].creator).to.equal(addr2.address);
   })
 
   /*
@@ -169,10 +169,10 @@ describe("LegitSignature", function() {
 
     const nftAddrAndCID = legitNFT.address.toString().toLowerCase() + "." + origFileCid;
 
-    const retrievedSig = await legitSignature.getNFTSignature(nftAddrAndCID);
+    const retrievedSigs = await legitSignature.getNFTSignatures(nftAddrAndCID);
     // console.log("retrievedSig: ", retrievedSig);
 
-    expect(retrievedSig.tokenId).to.equal(1);
+    expect(retrievedSigs[0].tokenId).to.equal(1);
   })
 
 })
