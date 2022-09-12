@@ -1,4 +1,4 @@
 
-    export const legitSignatureAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-    export const legitNFTAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+    export const legitSignatureAddress = "0x40657A2b7bE825cC74015740B36Bd7c8c35adB4e";
+    export const legitNFTAddress = "0xE8CF4B1dD2a1396DD9e8FC95C5A54eBC75c58DD2";
   

@@ -317,10 +317,11 @@ const SignNFT: React.FC = ({ children }) => {
       console.log(err);
     }
 
+    //console.log("MINT success!  transaction: ", transaction);
+
     setMintSuccess(true);
     setShowPreviewDialog(false);
 
-console.log("MINT success!  transaction: ", transaction);
     setMintedNFTAddr(transaction?.to);
     setMintedHash(transaction?.hash);
     setSuccessImgUrl(previewImageUrl);
@@ -625,9 +626,9 @@ console.log("MINT success!  transaction: ", transaction);
       <DialogFooter>
           <Button
               color="red"
-              onClick={(e) => setShowMintSuccess(false)}
+              onClick={(e) => {setShowMintSuccess(false); router.push("/dashboard"); }}
           >
-              Close
+              View in Dashboard
           </Button>
       </DialogFooter>
     </Dialog>

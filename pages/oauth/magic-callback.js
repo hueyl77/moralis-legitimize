@@ -72,7 +72,7 @@ const MagicCallback = () => {
   return <>
     <Loading />
     <div className="mt-4 text-center">
-      Verifying...
+      Verifying Identity...
     </div>
   </>;
 };
