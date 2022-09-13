@@ -30,7 +30,7 @@ const Dashboard: React.FC = ({ children }) => {
   }, [])
 
   async function loadNFTs() {
-    // try {
+    try {
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
@@ -105,10 +105,10 @@ const Dashboard: React.FC = ({ children }) => {
       setAssetNfts(legitItems)
 
       setLoadingState('loaded')
-    // }
-    // catch (error) {
-    //   console.log("errored calling loadNFTs: ", error);
-    // }
+    }
+    catch (error) {
+      console.log("errored calling loadNFTs: ", error);
+    }
   }
 
   if (loadingState === 'loaded' && !sigNfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)

@@ -41,6 +41,7 @@ import LegitNFT from '../../_ethereum/artifacts/contracts/LegitNFT.sol/LegitNFT.
 
 const noImageSrc = 'https://legitimize.mypinata.cloud/ipfs/QmZ6TKhV4NRsEY6yLEJFXmYK7uvJEHhiefcom9K33VhPnN/u8umflvv5bg31.jpg';
 
+
 type LegitSignatureItem = {
   name: string;
   socialAuth: any;
@@ -246,13 +247,12 @@ const SignNFT: React.FC = ({ children }) => {
     Constants and states variables
   ************************************************/}
 
-  // const maxFileSize = 1073741824; // 1GB
-  const maxFileSize = 524288000; // 500 MB
+  const maxFileSize = 1073741824; // 1GB
 
   const [hasSelectedImage, setHasSelectedImage] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [rejectedFile, setRejectedFile] = useState(false);
-  const [origFile, setOrigFile] = useState('');
+  const [previewImg, setPreviewImage] = useState('');
 
   const [errorText, setErrorText] = useState("");
 
@@ -262,7 +262,6 @@ const SignNFT: React.FC = ({ children }) => {
   async function uploadToIPFS(signedPreviewImg, original) {
 
     const base64data = await getBase64(original);
-// console.log("base64data: ", base64data);
     let origFileBase64Data = base64data?.split(',')[1];
 
     try {
@@ -375,6 +374,7 @@ const SignNFT: React.FC = ({ children }) => {
   }
 
   const handleSelectedFile = (acceptedFiles, fileRejections) => {
+
     if (fileRejections !== null && fileRejections.length > 0 && fileRejections[0].errors !== null) {
       const dropzoneErrorMsgs = fileRejections[0].errors.map(e => {
         if (e.code === "file-invalid-type") {
@@ -393,18 +393,34 @@ const SignNFT: React.FC = ({ children }) => {
 
     const file = acceptedFiles[0];
     setSelectedFile(file);
+console.log("filetype:", file.type)
     if (file.type.indexOf('image') > -1) {
       let imgUrl = URL.createObjectURL(file);
-
-      setOrigFile(imgUrl);
-      setHasSelectedImage(true);
+      setPreviewImage(imgUrl);
     }
+    else if (file.type == "application/pdf") {
+      setPreviewImage("/images/pdf-preview-img.png");
+    }
+    else if (file.type.indexOf('audio') > -1) {
+      setPreviewImage("/images/audio-preview-img.png");
+    }
+    else if (file.type.indexOf('video') > -1) {
+      setPreviewImage("/images/video-preview-img.png");
+    }
+    else if (file.type.indexOf('application/epub') > -1) {
+      setPreviewImage("/images/epub-preview-img.png");
+    }
+    else {
+      setPreviewImage("/images/document-preview-img.png");
+    }
+
+    setHasSelectedImage(true);
 
     return;
   }
 
   const onMountSticker = (element, sticker) => {
-
+    // console.log("sticker mounted:", sticker);
   };
 
   const handleOnProcess = async (result) => {
@@ -429,7 +445,7 @@ const SignNFT: React.FC = ({ children }) => {
         <div className="file-uploader" id="fileUploader" style={{display: `${!hasSelectedImage ? 'block' : 'none'}`}}>
           <Dropzone
             onDrop={handleSelectedFile}
-            accept={["application/*", "text/*", "audio/*", "image/*", "video/*"]}
+            acceptedFiles={["application/*", "text/*", "audio/*", "image/*", "video/*"]}
             maxSize={maxFileSize}
             noClick={false}
             multiple={false}>
@@ -454,7 +470,7 @@ const SignNFT: React.FC = ({ children }) => {
             ref={pinturaEditor}
             {...editorConfig}
             mimeType='image/jpeg'
-            src={origFile}
+            src={previewImg}
             stickers={stickersPaths}
             onProcess={handleOnProcess}
             stickerEnableSelectImage={false}
