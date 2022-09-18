@@ -242,6 +242,13 @@ contract LegitSignature is ERC721URIStorage {
       return items;
     }
 
+    /**
+     * For OpenSea
+     */
+     function contractURI() public view returns (string memory) {
+        return "https://legitimize.mypinata.cloud/ipfs/QmX38qqpNgpV86zq1G7iCsG5k4ouiun3SaneYMq6DKAxcY/OpenSeaCollection-LegitSignatures.json";
+    }
+
     function addressToAsciiString(address x) internal pure returns (string memory)
     {
         bytes memory s = new bytes(40);

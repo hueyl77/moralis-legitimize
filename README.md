@@ -31,13 +31,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Using TailwindCss
 
-
-## Signature Pad
-
-Issue 1:
-
-Module build failed: UnhandledSchemeError: Reading from "node:buffer" is not handled by plugins (Unhandled scheme).
-Webpack supports "data:" and "file:" URIs by default.
-You may need an additional plugin to handle "node:" URIs.
-
-(Webpack version 5)

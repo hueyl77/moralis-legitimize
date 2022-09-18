@@ -72,10 +72,12 @@ const SignNFT: React.FC = ({ children }) => {
 
   const [successImgUrl, setSuccessImgUrl] = useState("");
 
+  const verifyUrl = `${process.env.NEXT_PUBLIC_LEGIT_BASE_URL}/verify`;
+
 
   const [formInput, updateFormInput] = useState({
     name: 'Legit NFT Name',
-    description: 'A signed and creator authenticated NFT.',
+    description: `A signed and creator authenticated NFT.\n\nVerify signatures at ${verifyUrl}`,
     amount: 1,
     legalTerms: "Some Legal Terms Title" })
 
@@ -393,7 +395,7 @@ const SignNFT: React.FC = ({ children }) => {
 
     const file = acceptedFiles[0];
     setSelectedFile(file);
-console.log("filetype:", file.type)
+
     if (file.type.indexOf('image') > -1) {
       let imgUrl = URL.createObjectURL(file);
       setPreviewImage(imgUrl);
@@ -445,7 +447,8 @@ console.log("filetype:", file.type)
         <div className="file-uploader" id="fileUploader" style={{display: `${!hasSelectedImage ? 'block' : 'none'}`}}>
           <Dropzone
             onDrop={handleSelectedFile}
-            acceptedFiles={["application/*", "text/*", "audio/*", "image/*", "video/*"]}
+            // accept='application/*, text/*, audio/*, image/*, video/*'
+            accept={{accept: ['application/*', 'audio/*', 'image/*', 'text/*', 'video/*']}}
             maxSize={maxFileSize}
             noClick={false}
             multiple={false}>
@@ -634,7 +637,7 @@ console.log("filetype:", file.type)
 
                 <div className="flex-col mt-2">
                   <label className="font-bold">License</label>
-                  <Textarea variant="outlined" size="md" value={license1} />
+                  <Textarea variant="outlined" size="md" value={license1} onChange={e =>{}} />
                 </div>
             </div>
           </div>
@@ -693,7 +696,7 @@ console.log("filetype:", file.type)
 
                 <div className="flex-col mt-2">
                   <label className="font-bold">License</label>
-                  <Textarea variant="outlined" size="md" value={license1} />
+                  <Textarea variant="outlined" size="md" value={license1} onChange={e =>{}} />
                 </div>
             </div>
           </div>

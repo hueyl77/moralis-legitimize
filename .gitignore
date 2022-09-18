@@ -45,3 +45,5 @@ typechain
 #Hardhat files
 _ethereum/cache
 
+# misc
+.legislate-api.key

@@ -151,6 +151,12 @@ const Dashboard: React.FC = ({ children }) => {
                   <div className="p-4 bg-black">
                     <p className="font-bold text-white">{nft.name}</p>
                   </div>
+                  <div className="bg-black">
+
+                      <Link className="relative text-white" target="_blank"
+                        href={`${process.env.NEXT_PUBLIC_OPENSEA_ASSETS_URL}/${legitNFTAddress}/${nft.tokenId}`}>
+                        OpenSea</Link>
+                  </div>
                 </div>)
             )
           }
