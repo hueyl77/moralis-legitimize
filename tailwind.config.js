@@ -83,8 +83,7 @@ module.exports = withMT({
         '1/1': '100%',
       },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        'red-hat-display': ['"Red Hat Display"', 'sans-serif'],
+        'baloo': ['Baloo Bhaijaan 2', 'cursive']
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],

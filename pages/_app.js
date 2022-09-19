@@ -31,14 +31,6 @@ function MyApp({ Component, pageProps }) {
       easing: 'ease-out-quart',
     });
 
-    // darkode
-    if (typeof window != undefined) {
-      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
   }, []); // on pageload
 
   useEffect(() => {

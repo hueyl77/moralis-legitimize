@@ -321,8 +321,7 @@ const VerifyNFT: React.FC = ({ children }) => {
 
             <div className="grid md:grid-cols-12 gap-6">
 
-              {/* Left col */}
-              <div className="md:col-span-6">
+              <div className="md:col-span-12">
                 <div className="file-uploader" id="fileUploader" style={{display: `${!selectedFile ? 'block' : 'none'}`}}>
                   <Dropzone
                     onDrop={handleFileSelect}
@@ -334,12 +333,16 @@ const VerifyNFT: React.FC = ({ children }) => {
                     {({getRootProps, getInputProps}) => (
                       <div {...getRootProps()} className='dropzone-container'>
                         <input {...getInputProps()} />
-                        <p>Drag &apos;n&apos; drop a file here<br/>
+                        <p className="text-lg">Drag &apos;n&apos; drop a file here<br/>
                          or click to select file</p>
                       </div>
                     )}
                   </Dropzone>
                 </div>
+              </div>
+
+              {/* Left col */}
+              <div className="md:col-span-6">
 
                 <div className="file-uploader" id="imageEditor" style={
                   {

@@ -111,19 +111,19 @@ const LoginButtons: React.FC<Props> = ({ children, redirUrl }) => {
     <div className="mx-auto text-center">
       <div className="row-auto">
         <Button className="mt-8 w-60" color="orange" onClick={e => { handleAuth(e, "metamask")}}>
-          Connect via Metamask
+          Connect Via Metamask
         </Button>
       </div>
 
       <div className="row-auto">
-        <Button className="mt-2 w-60" color="blue" onClick={e => { handleAuth(e, "coinbase")}}>
-          Connect via Coinbase
+        <Button className="mt-2 w-60 hidden" color="blue" onClick={e => { handleAuth(e, "coinbase")}}>
+          Connect Via Coinbase
         </Button>
       </div>
 
       <div className="row-auto">
         <Button className="mt-2 w-60" color="light-blue" onClick={e => { handleAuth(e, "walletconnect")}}>
-          WallectConnect
+          Connect Via WallectConnect
         </Button>
       </div>
 

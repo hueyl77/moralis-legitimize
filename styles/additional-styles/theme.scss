@@ -1,3 +1,8 @@
+html, body {
+    font-family: 'Baloo Bhaijaan 2', 'cursive';
+}
+
+
 .form-input,
 .form-textarea,
 .form-multiselect,
@@ -69,7 +74,7 @@
     input[type="checkbox"].light-switch {
 
         + label {
-            @apply bg-teal-500;
+            @apply bg-indigo-500;
 
             > span:first-child {
 
