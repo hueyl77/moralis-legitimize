@@ -12,7 +12,11 @@ export default function Page(props) {
       <section className="relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative pt-32 pb-12 md:pt-40 md:pb-20">
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h3 className="h3 font-red-hat-display mb-4">Login</h3>
+            <h3 className="h3 text-legitBlue-500">Connect Wallet</h3>
+
+            <p className="mb-8">
+              Connect your wallet to view and create your handwritten signatures and signed NFTs.
+            </p>
 
             <LoginButtons redirUrl={`/dashboard`} />
           </div>

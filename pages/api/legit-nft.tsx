@@ -14,7 +14,7 @@ export const config = {
 const Endpoint = async (req, res) => {
 
   if (req.method == 'POST') {
-    const {assetName, description, amount, signedPreviewImg, origFile, legitNFTAddress } = req.body;
+    const {assetName, description, amount, signedPreviewImg, origFileType, origFile, legitNFTAddress } = req.body;
 
     const randomNum = Math.floor(Math.random() * 100000000);
     const mTimestamp = Date.now();
@@ -85,6 +85,7 @@ const Endpoint = async (req, res) => {
       previewImage: previewImageUrl,
       external_url: previewImageUrl,
       originalFile: origFileUrl,
+      origFileType: origFileType,
       legitNFTAddress: legitNFTAddress,
       origFileCid: pinOrigResult.IpfsHash,
       legalTerms: license1

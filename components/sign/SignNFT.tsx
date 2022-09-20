@@ -251,7 +251,6 @@ const SignNFT: React.FC = ({ children }) => {
 
   const maxFileSize = 1073741824; // 1GB
 
-  const [hasSelectedImage, setHasSelectedImage] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [rejectedFile, setRejectedFile] = useState(false);
   const [previewImg, setPreviewImage] = useState('');
@@ -273,7 +272,8 @@ const SignNFT: React.FC = ({ children }) => {
         description: formInput.description,
         amount: formInput.amount,
         signedPreviewImg: signedPreviewImg,
-        origFile: origFileBase64Data
+        origFile: origFileBase64Data,
+        origFileType: original.type
       });
 
       if (response.status === 200) {
@@ -365,6 +365,12 @@ const SignNFT: React.FC = ({ children }) => {
     router.push("/create-signature");
   }
 
+  const resetSelectedFile = (event) => {
+    event.preventDefault();
+    setPreviewImage(null);
+    setSelectedFile(null);
+  }
+
   {/************************************************
     Image Editor event handlers
   ************************************************/}
@@ -380,7 +386,7 @@ const SignNFT: React.FC = ({ children }) => {
     if (fileRejections !== null && fileRejections.length > 0 && fileRejections[0].errors !== null) {
       const dropzoneErrorMsgs = fileRejections[0].errors.map(e => {
         if (e.code === "file-invalid-type") {
-          return "Invalid file type, file must be a .csv";
+          return "Invalid file type";
         }
         if (e.code === "file-too-large") {
           return "File size too large, file must be less than 100 MB";
@@ -416,8 +422,6 @@ const SignNFT: React.FC = ({ children }) => {
       setPreviewImage("/images/document-preview-img.png");
     }
 
-    setHasSelectedImage(true);
-
     return;
   }
 
@@ -444,11 +448,29 @@ const SignNFT: React.FC = ({ children }) => {
     <div className="grid md:grid-cols-12 gap-6">
       {/*left column*/}
       <div className="md:col-span-6">
-        <div className="file-uploader" id="fileUploader" style={{display: `${!hasSelectedImage ? 'block' : 'none'}`}}>
+        <div className="file-uploader" id="fileUploader" style={{display: `${!selectedFile ? 'block' : 'none'}`}}>
           <Dropzone
             onDrop={handleSelectedFile}
-            // accept='application/*, text/*, audio/*, image/*, video/*'
-            accept={{accept: ['application/*', 'audio/*', 'image/*', 'text/*', 'video/*']}}
+
+            accept={
+              {
+                'application/epub+zip': ['.epub'],
+                'application/gzip': ['.gz'],
+                'application/msword': ['.doc', '.docx'],
+                'application/pdf': ['.pdf'],
+                'application/rtf': ['.rtf'],
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+                'application/vnd.ms-powerpoint': ['.ppt'],
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation': ['.pptx'],
+                'application/vnd.rar': ['.rar'],
+                'application/x-7z-compressed': ['.7z'],
+                'application/zip': ['.zip'],
+                'audio/*': [],
+                'image/*': [],
+                'text/*': [],
+                'video/*': [],
+              }
+            }
             maxSize={maxFileSize}
             noClick={false}
             multiple={false}>
@@ -465,8 +487,8 @@ const SignNFT: React.FC = ({ children }) => {
 
         <div className="file-uploader" id="imageEditor" style={
           {
-            visibility: `${hasSelectedImage ? 'visible' : 'hidden'}`,
-            position: `${hasSelectedImage ? 'relative' : 'absolute'}`,
+            visibility: `${selectedFile ? 'visible' : 'hidden'}`,
+            position: `${selectedFile ? 'relative' : 'absolute'}`,
           }}>
 
           <PinturaEditor
@@ -480,7 +502,17 @@ const SignNFT: React.FC = ({ children }) => {
           />
         </div>
 
-        <div className="row-auto break-words">
+        <div className="text-center">
+          <div className="float-left">
+            { selectedFile && <span>Selected File: {selectedFile.name}</span>}
+          </div>
+          <Link className="text-blue-600 text-sm font-bold float-right mr-2" href="#"
+            onClick={resetSelectedFile }>
+            [Reset Selected File]
+          </Link>
+        </div>
+
+        <div className="row-auto break-words hidden">
           <div>Selected Signature Path:</div>
           <div>{selectedStickerPath}</div>
         </div>
@@ -499,12 +531,12 @@ const SignNFT: React.FC = ({ children }) => {
 
             { (session?.user && signatures.length == 0) &&
               (<div id="no-sig-msg">
-                <p>No signatures detected in the connected wallet.  (Your wallet might be locked).</p>
+                <p>No signatures detected in the connected wallet
+                  or your wallet is locked.</p>
 
-                <Button className="mt-2 w-80"
-                    color="orange" onClick={handleCreateSigClicked}>
-                            Let&apos;s Create a Signature
-              </Button>
+                <Button className="mt-2 w-80" onClick={handleCreateSigClicked}>
+                  Let&apos;s Create a Signature
+                </Button>
               </div>)
             }
           </div>
@@ -515,7 +547,7 @@ const SignNFT: React.FC = ({ children }) => {
 
             <div className="row-auto">
               <div className="">
-                <label className="form-label">1) Enter a document, image, music or video file to upload.</label>
+                <label className="form-label">1) Select a document, image, music or video file to upload.</label>
 
               </div>
             </div>
@@ -525,7 +557,7 @@ const SignNFT: React.FC = ({ children }) => {
                 <label className="form-label">2) Select a signature at the bottom of the image editor.</label>
                 <p className="mt-2 ml-4 text-sm">
                   You can resize and position the signature on the preview image of the NFT.  This is for
-                  cosmetic purposes only and does not affect any backend functionalities.
+                  preview image only and does not alter the original file.
                 </p>
               </div>
             </div>
@@ -577,7 +609,7 @@ const SignNFT: React.FC = ({ children }) => {
 
             <div className="row-auto flex-col mt-4">
               <div>
-                <label className="form-label">5) Select Licensing Options</label>
+                <label className="form-label">5) Select legal text to embed</label>
               </div>
               <div className="flex items-center"><Checkbox defaultChecked /> Usage - allow full permissions to view, read, listen, or watch</div>
               <div className="flex items-center"><Checkbox  /> Copies Permission - allow restricted permissions to make copies</div>
@@ -586,7 +618,7 @@ const SignNFT: React.FC = ({ children }) => {
             </div>
 
             <div className="row-auto">
-              <Button className="mt-2" color="orange" onClick={previewClicked}>
+              <Button className="mt-2 drop-shadow-lg" onClick={previewClicked}>
                 Preview and Mint
               </Button>
             </div>
@@ -626,12 +658,14 @@ const SignNFT: React.FC = ({ children }) => {
                 <div className="flex-col mt-2">
                   <label className="font-bold">Social Auth: </label>
 
-                  {selectedSignature?.socialAuth && <div className="flex flex-col">
+                  {selectedSignature?.socialAuth && <div className="flex align-center items-center my-2">
                     <Link className="relative h-12 w-12 mx-1" href="/sign-nft" onClick={(e) => {e.preventDefault()}}>
-                      <Image src={`/images/social/${selectedSignature.socialAuth?.authType}.svg`} layout="fill" alt='Social Icon' />
+                      <Image src={`/images/social/${selectedSignature.socialAuth?.authType}.svg`} layout="fill" alt='Social Icon' className="drop-shadow-lg" />
                     </Link>
-                    <div>{selectedSignature.socialAuth?.socialName || selectedSignature.socialAuth?.authType }</div>
-                    <div>{selectedSignature.socialAuth?.socialHandle }</div>
+                    <div className="ml-2">
+                      <p>{selectedSignature.socialAuth?.socialName || selectedSignature.socialAuth?.authType }</p>
+                      <p>{selectedSignature.socialAuth?.socialHandle }</p>
+                    </div>
                   </div>}
                 </div>
 
@@ -644,7 +678,6 @@ const SignNFT: React.FC = ({ children }) => {
       </DialogBody>
       <DialogFooter>
           <Button
-              color="red"
               onClick={(e) => {setShowMintSuccess(false); router.push("/dashboard"); }}
           >
               View in Dashboard
@@ -655,14 +688,14 @@ const SignNFT: React.FC = ({ children }) => {
     {/* Preview Dialog */}
     <Dialog size="xl" open={showPreviewDialog} handler={setShowPreviewDialog}>
       <DialogHeader>
-          PREVIEW SIGNED NFT
+          <div className="text-blue-600">PREVIEW SIGNED NFT</div>
       </DialogHeader>
       <DialogBody>
-          <div className="grid md:grid-cols-12 w-full">
+          <div className="grid md:grid-cols-12 w-full gap-4">
             <div className="md:col-span-6">
               <div className="relative w-full h-96">
-              <Image src={`data:image/jpeg;base64,${signedPreviewImg}`}
-                 layout='fill' objectFit='contain' alt="Preview Signed Thumbnail" />
+                <Image src={`data:image/jpeg;base64,${signedPreviewImg}`} style={{borderRadius: "20px"}}
+                   layout='fill' objectFit='contain' alt="Preview Signed Thumbnail" />
               </div>
             </div>
 
@@ -685,12 +718,14 @@ const SignNFT: React.FC = ({ children }) => {
                 <div className="flex-col mt-2">
                   <label className="font-bold">Social Auth: </label>
 
-                  {selectedSignature?.socialAuth && <div className="flex flex-col">
+                  {selectedSignature?.socialAuth && <div className="flex align-center items-center my-2">
                     <Link className="relative h-12 w-12 mx-1" href="/sign-nft" onClick={(e) => {e.preventDefault()}}>
-                      <Image src={`/images/social/${selectedSignature.socialAuth?.authType}.svg`} layout="fill" alt='Social Icon' />
+                      <Image src={`/images/social/${selectedSignature.socialAuth?.authType}.svg`} layout="fill" alt='Social Icon' className="drop-shadow-lg" />
                     </Link>
-                    <div>{selectedSignature.socialAuth?.socialName || selectedSignature.socialAuth?.authType }</div>
-                    <div>{selectedSignature.socialAuth?.socialHandle }</div>
+                    <div className="ml-2">
+                      <p>{selectedSignature.socialAuth?.socialName || selectedSignature.socialAuth?.authType }</p>
+                      <p>{selectedSignature.socialAuth?.socialHandle }</p>
+                    </div>
                   </div>}
                 </div>
 
@@ -703,14 +738,13 @@ const SignNFT: React.FC = ({ children }) => {
       </DialogBody>
       <DialogFooter>
           <Button
-              color="red"
+              className="bg-gray-100 text-gray-400"
               onClick={(e) => setShowPreviewDialog(false)}
           >
               Close
           </Button>
 
           <Button
-              color="green"
               className="ml-1"
               onClick={handleCreateNFTClicked}
           >

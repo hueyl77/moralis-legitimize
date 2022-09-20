@@ -50,10 +50,11 @@ const VerifyNFT: React.FC = ({ children }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [rejectedFile, setRejectedFile] = useState(false);
 
-  const [verifyClicked, setVerifyClicked] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [legalTerms, setLegalTerms] = useState("");
   const [loadedSigs, setLoadedSigs] = useState<SignatureItem[]>([]);
+
+  const [isVerifying, setIsVerifying] = useState(false);
 
   const [errorMsg, setErrorMsg] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -85,9 +86,10 @@ const VerifyNFT: React.FC = ({ children }) => {
     setErrorMsg("");
     setPreviewImage("");
     setLegalTerms("");
-    setVerifyClicked(true);
 
     try {
+
+      setIsVerifying(true);
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
@@ -119,6 +121,7 @@ const VerifyNFT: React.FC = ({ children }) => {
         }
 
         setLoadedSigs(newLoadedSigs);
+        setIsVerifying(false);
       }
 
       const metaData = await axios.get(tokenUri);
@@ -170,7 +173,10 @@ const VerifyNFT: React.FC = ({ children }) => {
     const file = acceptedFiles[0];
     setSelectedFile(file);
 
+    setIsVerifying(true);
+
     reader.onloadend = function(e) {
+
         var exifObj = piexif.load(e.target.result);
         for (var ifd in exifObj) {
             if (ifd == "thumbnail") {
@@ -194,6 +200,8 @@ const VerifyNFT: React.FC = ({ children }) => {
                 }
             }
         }
+
+        setIsVerifying(false);
     };
     reader.readAsDataURL(file);
   };
@@ -205,6 +213,14 @@ const VerifyNFT: React.FC = ({ children }) => {
     console.log("File rejected: " + msg);
     setErrorText(msg);
     setRejectedFile(true);
+  }
+
+  const resetSelectedFile = (event) => {
+    event.preventDefault();
+
+    setSelectedFile(null);
+    setPreviewImage("");
+    setLoadedSigs([]);
   }
 
   /*
@@ -233,11 +249,7 @@ const VerifyNFT: React.FC = ({ children }) => {
     }
 
     return (
-      <div className="row-auto">
-        <div className="mt-2 row-auto">
-          Signature
-        </div>
-
+      <div className="row-auto" key={`sig-${sig.creatorName}`}>
         <div className="mt-2 row-auto">
           Creator Name: {sig.creatorName}
         </div>
@@ -274,7 +286,7 @@ const VerifyNFT: React.FC = ({ children }) => {
     if (loadedSigs.length == 0) {
       return (
         <div className="mt-2">
-          No Signatures found.
+          None
         </div>
       );
     }
@@ -317,7 +329,7 @@ const VerifyNFT: React.FC = ({ children }) => {
           unmount: { y: 250 },
           }}>
 
-          <TabPanel value={`verify-image`}>
+          <TabPanel value={`verify-image`} style={{fontFamily: "'Baloo Bhaijaan 2', cursive"}}>
 
             <div className="grid md:grid-cols-12 gap-6">
 
@@ -357,24 +369,40 @@ const VerifyNFT: React.FC = ({ children }) => {
                     src={selectedFile}
                     onProcess={handleOnProcess}
                   />
+
+                  <div className="text-center mt-4">
+                    <div className="mb-2">
+                      <Link className="text-blue-600 text-sm font-bold" href="#"
+                        onClick={resetSelectedFile }>
+                        [Reset Selected File]
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               {/*right column*/}
               <div className="md:col-span-6">
-                {verifyClicked && loadedSigs.length == 0 && (
+                {selectedFile && isVerifying && (
+                    <div className="mt-4">
+                      Verifying...
+                    </div>
+                  )
+                }
+
+                {selectedFile && !isVerifying && loadedSigs.length == 0 && (
                     <div className="mt-2">
                       No Signatures found.
                     </div>
                   )
                 }
 
-                {loadedSigs.length > 0 && renderLoadedSigs()}
+                {!isVerifying && loadedSigs.length > 0 && renderLoadedSigs()}
 
-                {loadedSigs.length > 0 && legalTerms && (
+                {!isVerifying && loadedSigs.length > 0 && legalTerms && selectedFile && (
                   <div className="mt-4 row-auto">
                     <label className="font-bold">Legal Terms:</label>
-                    <Textarea variant="outlined" size="md" value={legalTerms} />
+                    <Textarea variant="outlined" size="md" value={legalTerms} onChange={e => {}} />
                   </div>)
                 }
               </div>

@@ -14,8 +14,11 @@ export default function Page(props) {
             <div className="pt-32 pb-10 md:pt-32 md:pb-10">
 
               {/* Page header */}
-              <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-                <h3 className="h3 font-red-hat-display">Verify Signed NFT</h3>
+              <div className="max-w-3xl mx-auto text-center pb-4 md:pb-8">
+                <h3 className="h3 text-legitBlue-500">Verify a Signed NFT</h3>
+                <p>
+                  Select a signed NFT&apos;s preview image (with embeded EXIF data) to verify if any signatures are attached.
+                </p>
               </div>
 
               <VerifyNFT />

@@ -110,7 +110,7 @@ const LoginButtons: React.FC<Props> = ({ children, redirUrl }) => {
   return (
     <div className="mx-auto text-center">
       <div className="row-auto">
-        <Button className="mt-8 w-60" color="orange" onClick={e => { handleAuth(e, "metamask")}}>
+        <Button className="w-60" color="orange" onClick={e => { handleAuth(e, "metamask")}}>
           Connect Via Metamask
         </Button>
       </div>

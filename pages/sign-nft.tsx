@@ -12,11 +12,12 @@ export default function Page(props) {
       <div className="flex flex-col min-h-screen overflow-hidden">
 
         <section className="relative">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 relative pt-32 pb-12 md:pt-40 md:pb-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 relative pt-32 pb-12">
 
               {/* Page header */}
-              <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-                <h3 className="h3 font-red-hat-display mb-4">Create a Signed NFT</h3>
+              <div className="max-w-3xl mx-auto text-center pb-8 md:pb-12">
+                <h3 className="h3 text-legitBlue-500">Create a Signed NFT</h3>
+                <p>Upload and create a signed NFT of a media file or document</p>
               </div>
 
               <SignNFT />

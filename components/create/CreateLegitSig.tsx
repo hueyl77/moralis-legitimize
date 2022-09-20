@@ -56,7 +56,7 @@ const CreateLegitSig = ({ stickers }) => {
   const sigStampRef = useRef(null);
 
   const [formInput, updateFormInput] = useState({ 
-    name: 'Your Name',
+    name: 'Enter Your Name',
     description: 'An NFT Signature for legitimizing assets.' })
 
   async function uploadToIPFS(imageToUpload) {
@@ -139,7 +139,7 @@ const CreateLegitSig = ({ stickers }) => {
   }
 
   const handleYourNameClicked = (event) => {
-    if (event.target.value === "Your Name") {
+    if (event.target.value === "Enter Your Name") {
       event.target.setSelectionRange(0, event.target.value.length);
     }
   }
@@ -259,7 +259,12 @@ const CreateLegitSig = ({ stickers }) => {
           </TabBody>
         </TabContainer>
 
-        {!session?.user && (<LoginButtons />)}
+        {!session?.user && (
+          <>
+            <p className="my-4 text-center">Connect your wallet to store the NFT</p>
+            <LoginButtons />
+          </>
+        )}
 
         {session?.user && (<Button
                             className="mt-2"
@@ -268,41 +273,37 @@ const CreateLegitSig = ({ stickers }) => {
                             Preview
                         </Button>)}
 
-
-        {/*<button onClick={handleCreateNFTClicked} className="font-bold mt-4 bg-orange-500 text-white rounded p-4 shadow-lg">
-          {isMinting ? `Minting NFT...` : `Create NFT`}
-        </button>*/}
       </div>
 
       {/* Preview Dialog */}
       <Dialog size="lg" open={showPreviewDialog} handler={setShowPreviewDialog}>
-        <DialogHeader>
+        <DialogHeader className="text-legitBlue-500" style={{background: "aliceblue"}}>
             PREVIEW SIGNATURE NFT
         </DialogHeader>
-        <DialogBody>
+        <DialogBody className="w-full">
 
-            {!mintSuccess && (<div id="preview-sig-form">
-                <div>
-                  {savedImage && (<Image src={`data:image/png;base64,${savedImage}`} width={500} height={400} alt="Preview Signature" />)}
+            {!mintSuccess && (<div id="preview-sig-form relative" style={{width: "100%"}}>
+                <div className="mx-auto text-center">
+                  {savedImage && (<Image src={`data:image/png;base64,${savedImage}`} width={574} height={298} alt="Preview Signature" />)}
                 </div>
 
-                <div>
-                  <p className="text-base leading-relaxed text-gray-600 font-normal">
+                <div className="px-4 py-6" style={{background: "aliceblue"}}>
+                  <p className="text-base leading-relaxed text-legitBlue-700 font-normal">
                     Connect a social profile to this signature.
                   </p>
 
                   {!socialIsLinked &&
                     (<div className="flex my-2">
                       <Link className="relative h-12 w-12 mx-1" href="/create-signature" onClick={(e) => handleSocialClicked(e, 'twitter')}>
-                        <Image src={`/images/social/twitter.svg`} layout="fill" alt='Twitter' />
+                        <Image src={`/images/social/twitter.svg`} layout="fill" alt='Twitter' className="drop-shadow-lg opacity-90 hover:opacity-100" />
                       </Link>
 
                       <Link className="relative h-12 w-12 mx-1" href="/create-signature" onClick={(e) => handleSocialClicked(e, 'facebook')}>
-                        <Image src={`/images/social/facebook.svg`} layout="fill" objectFit="cover"  alt='Facebook' />
+                        <Image src={`/images/social/facebook.svg`} layout="fill" objectFit="cover" alt='Facebook' className="drop-shadow-lg opacity-90 hover:opacity-100" />
                       </Link>
 
                       <Link className="relative h-12 w-12 mx-1" href="/create-signature" onClick={(e) => handleSocialClicked(e, 'linkedin')}>
-                        <Image src={`/images/social/linkedin.svg`} layout="fill" objectFit="cover" alt='LinkedIn' />
+                        <Image src={`/images/social/linkedin.svg`} layout="fill" objectFit="cover" alt='LinkedIn' className="drop-shadow-lg opacity-90 hover:opacity-100" />
                       </Link>
 
                       {/*<Link className="relative h-12 w-12 mx-1" href="/create-signature" onClick={(e) => handleSocialClicked(e, 'twitch')}>
@@ -313,10 +314,13 @@ const CreateLegitSig = ({ stickers }) => {
 
                   {socialIsLinked &&
                     (<>
-                      <div className="flex flex-col my-2 text-green-600 font-bold">
-                        <div>Linked {selectedSocialType}: {socialLinkName}</div>
+                      <div className="flex flex-col my-2 text-gray-600">
+                        <div className="flex align-center">
+                          <Image src={`/images/social/${selectedSocialType}.svg`} width="40" height="40" alt='Twitter' className="drop-shadow-lg" />
+                          <div className="ml-3 flex items-center font-bold">Linked User: {socialLinkName}</div>
+                        </div>
                         <div>
-                          <Link className="flex mx-4 text-blue-600 text-sm font-bold" href="/create-signature"
+                          <Link className="flex mt-2 mx-2 text-blue-600 text-sm font-bold" href="/create-signature"
                             onClick={(event) => {event.preventDefault(); setSocialLinkHandle(""); setSocialIsLinked(false);} }>
                           [Reset Social Link]
                           </Link>
@@ -330,8 +334,8 @@ const CreateLegitSig = ({ stickers }) => {
 
             {mintSuccess && (
               <div>
-                <p className="text-green-600 font-bold">
-                  Signature Created Successfully.  You can now use it to sign any assets or documents that belong to you.
+                <p className="font-bold">
+                  Signature NFT Created Successfully.
                 </p>
 
               </div>)
@@ -339,8 +343,7 @@ const CreateLegitSig = ({ stickers }) => {
         </DialogBody>
         <DialogFooter>
             <Button
-                className="mr-1"
-                color="red"
+                className="mr-1 drop-shadow-lg bg-gray-400"
                 onClick={(e) => setShowPreviewDialog(false)}
             >
                 Close
@@ -348,14 +351,14 @@ const CreateLegitSig = ({ stickers }) => {
 
             {!mintSuccess &&
               (<Button
-                color="green"
+                className="drop-shadow-lg"
                 onClick={(e) => {handleCreateNFTClicked(e); }}
             >
                 {createSigBtnText}
             </Button>)}
 
             {mintSuccess && (
-                  <Button color="orange"
+                  <Button className="drop-shadow-lg"
                       onClick={(e) => { router.push("/sign-nft") }}>
                       Go Sign an NFT
                   </Button>)}

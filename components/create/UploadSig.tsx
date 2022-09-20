@@ -83,7 +83,7 @@ const UploadSig = forwardRef((props: UploadSigProps, ref) => {
       <div className="file-uploader" id="fileUploader" style={{display: `${!hasSelectedImage ? 'block' : 'none'}`}}>
         <Dropzone
           onDrop={handleSelectedFile}
-          accept={{accept: ["image/*"]}}
+          accept={{'image/*': ['.png', '.gif', '.bmp', '.jpg', '.jpeg']}}
           maxSize={maxFileSize}
           noClick={false}
           multiple={false}>

@@ -14,17 +14,14 @@ export default function Page({ user }) {
   return (
     <>
       <div className="flex flex-col min-h-screen overflow-hidden">
-        <div className="relative max-w-6xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-          <PageIllustration />
-        </div>
-
         <section className="relative">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
-            <div className="pt-32 pb-12 md:pt-40 md:pb-20">
+            <div className="pt-32 pb-12 md:pb-20">
 
               {/* Page header */}
-              <div className="max-w-4xl mx-auto text-center pb-12 md:pb-16">
-                <h3 className="h3 font-red-hat-display mb-4">Dashboard</h3>
+              <div className="max-w-4xl mx-auto text-center pb-4 md:pb-8">
+                <h3 className="h3 text-legitBlue-500">Dashboard</h3>
+                <p>View and manage your signatures and signed NFTs</p>
               </div>
 
               <Dashboard />

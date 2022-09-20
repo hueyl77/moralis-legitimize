@@ -17,8 +17,12 @@ export default function Page(props) {
             <div className="pt-32 pb-10 md:pt-32 md:pb-10">
 
               {/* Page header */}
-              <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-                <h3 className="h3 font-red-hat-display">Create Signature NFT</h3>
+              <div className="max-w-3xl mx-auto text-center pb-4 md:pb-8">
+                <h3 className="h3 text-legitBlue-500">Create Your Signature NFT</h3>
+
+                <p>
+                  Use one of the methods below to create your handwritten signature NFT.
+                </p>
               </div>
 
               <CreateLegitSig stickers={props.stickers} />

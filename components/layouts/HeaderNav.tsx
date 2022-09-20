@@ -49,14 +49,14 @@ const HeaderNav: React.FC<Props> = ({ children }) => {
   }
 
   return (
-    <header className="absolute w-full z-30" style={{background: "aliceblue"}}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <header className="absolute w-full z-30">
+      <div className="z-50 mx-auto px-4 sm:px-6 w-full" style={{position: "fixed", top: "0", background: "aliceblue"}}>
         <div className="flex items-center justify-between h-20">
 
           {/* Site branding */}
           <div className="shrink-0 mr-5">
             {/* Logo */}
-            <Link href="/" className="block" aria-label="Cruip">
+            <Link href="/" className="block mt-2" aria-label="Cruip">
               <Image src="/images/stamp-checkmark.png" width="36" height="36" alt="Legitimize Logo" />
             </Link>
           </div>
@@ -66,11 +66,6 @@ const HeaderNav: React.FC<Props> = ({ children }) => {
 
             {/* Desktop menu links */}
             <ul className="flex grow flex-wrap items-center font-medium text-lg">
-              <li>
-                <Link href="/dashboard" onClick={(e) => setMobileNavOpen(false)}
-                  className="desktop-nav-link">Dashboard</Link>
-              </li>
-
               <li>
                 <Link href="/create-signature" onClick={(e) => setMobileNavOpen(false)}
                   className="desktop-nav-link">Create a Signature</Link>
@@ -85,15 +80,24 @@ const HeaderNav: React.FC<Props> = ({ children }) => {
                 <Link href="/verify" onClick={(e) => setMobileNavOpen(false)}
                   className="desktop-nav-link">Verify</Link>
               </li>
+
+              <li>
+                <Link href="/dashboard" onClick={(e) => setMobileNavOpen(false)}
+                  className="desktop-nav-link">Dashboard</Link>
+              </li>
             </ul>
 
             {/* Desktop CTA on the right */}
             <ul className="flex justify-end flex-wrap items-center">
               <li>
                 {( (session) ?
-                  <Link href="#" onClick={handleLogout} className="btn-sm text-white bg-indigo-500 hover:bg-indigo-400 ml-6">Logout</Link>
+                  <Link href="#" onClick={handleLogout} className="btn-sm text-white bg-legitBlue-500 hover:bg-legitBlue-400 ml-6 drop-shadow-lg">
+                    Disconnect Wallet
+                  </Link>
                   :
-                  <Link href="/login" className="btn-sm text-white bg-indigo-500 hover:bg-indigo-400 ml-6">Login</Link>
+                  <Link href="/login" className="btn-sm text-white bg-legitBlue-500 hover:bg-legitBlue-400 ml-6 drop-shadow-lg">
+                    Connect Wallet
+                  </Link>
                 )}
               </li>
             </ul>
@@ -132,9 +136,6 @@ const HeaderNav: React.FC<Props> = ({ children }) => {
                   {/* Mobile Links */}
                   <ul>
                     <li>
-                      <Link href="/dashboard" onClick={(e) => setMobileNavOpen(false)} className="mobile-nav-link">Dashboard</Link>
-                    </li>
-                    <li>
                       <Link href="/create-signature" onClick={(e) => setMobileNavOpen(false)} className="mobile-nav-link">Create</Link>
                     </li>
                     <li>
@@ -145,10 +146,14 @@ const HeaderNav: React.FC<Props> = ({ children }) => {
                     </li>
 
                     <li>
+                      <Link href="/dashboard" onClick={(e) => setMobileNavOpen(false)} className="mobile-nav-link">Dashboard</Link>
+                    </li>
+
+                    <li>
                       {( (session) ?
-                        <Link href="#" onClick={(e) => {setMobileNavOpen(false); handleLogout(e);}} className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-indigo-500 hover:bg-indigo-400 transition duration-150 ease-in-out">Logout</Link>
+                        <Link href="#" onClick={(e) => {setMobileNavOpen(false); handleLogout(e);}} className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-legitBlue-500 hover:bg-legitBlue-400 transition duration-150 ease-in-out">Disconnect Wallet</Link>
                         :
-                        <Link href="/login" onClick={(e) => setMobileNavOpen(false)} className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-indigo-500 hover:bg-indigo-400 transition duration-150 ease-in-out">Login</Link>
+                        <Link href="/login" onClick={(e) => setMobileNavOpen(false)} className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-legitBlue-500 hover:bg-legitBlue-400 transition duration-150 ease-in-out">Connect Wallet</Link>
                       )}
                     </li>
                   </ul>
