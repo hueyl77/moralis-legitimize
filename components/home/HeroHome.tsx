@@ -65,7 +65,7 @@ const HeroHome: React.FC = ({ children }) => {
             {/* Mobile mockup */}
             <div className="md:col-span-6 lg:col-span-6 text-center md:text-right">
               <div className="inline-flex relative justify-center items-center">
-                  <Image className="relative rounded-lg max-w-full mx-auto md:mr-0 md:max-w-none h-auto opacity-80" src={DigitalSignatureImg} alt="Digital Signature" aria-hidden="true" />
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/0fnYRakETDU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </div>
 
