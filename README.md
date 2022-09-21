@@ -10,6 +10,10 @@ Two custom ERC721 contracts, LegitSignature and LegitNFT, provide the core funct
 
 The intuitive UI is built using NextJS and a handful of APIs and libraries.  Check out the technologies used section below.
 
+### Hackathon Tracks:
+- Cloning Web2
+- Doing Good
+
 ### Team Member(s):
 
 Huey Ly - (Designer and coder) - HueyL77@gmail.com
