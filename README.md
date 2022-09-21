@@ -2,7 +2,14 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+## Moralis-Filecoin Hackathon
+
+Legitimize is a handwritten-signature NFT validation system, allowing users to create NFTs from their human signatures and link them to social profiles for proof of identity. Legitimate signatures can be used to sign documents and assets for verification of authenticity and legality purposes.
+
+
+
+## Local Setup
 
 - Clone this repo to your local environment:
 
