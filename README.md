@@ -4,11 +4,17 @@
 
 ## Moralis-Filecoin Hackathon
 
+Demo Video: <a href="https://www.youtube.com/watch?v=5GnQw7faOdE" target="_blank">https://www.youtube.com/watch?v=5GnQw7faOdE</a>
+
 This web application leverage the ease of web3 functionalities using the **Moralis API** and **IPFS**'s data storage system.  The **Pinata pinning service** is used to upload and pin files to IPFS. 
 
 Two custom ERC721 contracts, LegitSignature and LegitNFT, provide the core functionalities of NFT creation and verification.  The contracts are deployed to the **Polygon** chain (the Mumbai testnet), and uses **MATIC** for transaction fees.
 
 The intuitive UI is built using NextJS and a handful of APIs and libraries.  Check out the technologies used section below.
+
+### Hackathon Tracks:
+- Cloning Web2
+- Doing Good
 
 ### Team Member(s):
 
