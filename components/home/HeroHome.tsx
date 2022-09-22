@@ -64,8 +64,8 @@ const HeroHome: React.FC = ({ children }) => {
 
             {/* Mobile mockup */}
             <div className="md:col-span-6 lg:col-span-6 text-center md:text-right">
-              <div className="inline-flex relative justify-center items-center">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/0fnYRakETDU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              <div className="video-container-yt">
+                  <iframe src="https://www.youtube.com/embed/0fnYRakETDU" title="Intro to Legitimize NFT Signatures" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </div>
 

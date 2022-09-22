@@ -276,7 +276,7 @@ const CreateLegitSig = ({ stickers }) => {
       </div>
 
       {/* Preview Dialog */}
-      <Dialog size="lg" open={showPreviewDialog} handler={setShowPreviewDialog}>
+      <Dialog size="xl" open={showPreviewDialog} handler={setShowPreviewDialog}>
         <DialogHeader className="text-legitBlue-500" style={{background: "aliceblue"}}>
             PREVIEW SIGNATURE NFT
         </DialogHeader>

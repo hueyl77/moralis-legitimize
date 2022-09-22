@@ -629,7 +629,7 @@ const SignNFT: React.FC = ({ children }) => {
     </div>
 
     {/* Success Dialog */}
-    <Dialog size="lg" open={showMintSuccess} handler={setShowMintSuccess}>
+    <Dialog size="xl" open={showMintSuccess} handler={setShowMintSuccess}>
       <DialogHeader>
           <div className="font-bold text-orange">
             Congratulations!  You have successfully minted your signed NFT.
