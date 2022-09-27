@@ -2,6 +2,8 @@
 
 <a href="https://moralis-legitimize.vercel.app" target="_blank">Legitimize.io</a> is a handwritten-signature NFT validation system, allowing users to create NFTs from their human signatures and link them to social profiles for proof of identity. Legitimate signatures can be used to sign documents and assets for authentication and legality purposes.
 
+*Note: Please use the testnet **POLYGON MUMBAI** when testing.  You can use the faucet at https://faucet.polygon.technology/ to request some test MATIC.  Thank you.*
+
 ## Moralis-Filecoin Hackathon
 
 Demo Video: <a href="https://www.youtube.com/watch?v=vPHsGa3Wus4" target="_blank">https://www.youtube.com/watch?v=vPHsGa3Wus4</a>
@@ -66,6 +68,10 @@ References:
 - [_ethereum/test/LegitSignature-test.js](https://github.com/hueyl77/moralis-legitimize/blob/master/_ethereum/test/LegitSignature-test.js")
 
 ## How It Works
+
+*Note: Please use the testnet **POLYGON MUMBAI** when testing.  You can use the faucet at https://faucet.polygon.technology/ to request some test MATIC.  Thank you.*
+
+
 1. The user utilizes the intuitive UI to create an NFT of their handwritten signature.  The SignatureNFT token is stored with the following metadata:
 
 - name: the name of the person is also the name of the NFT
